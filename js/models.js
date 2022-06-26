@@ -79,17 +79,17 @@ class StoryList {
   
     // UNIMPLEMENTED: complete this function!
     let res = await axios.post(`${BASE_URL}/stories`, {params:
-      {"token": user.token,
-        "story": {
-            "author": newStory.author, 
-            "title": newStory.title,
-            "url": newStory.url
+      {token: user.loginToken,
+        story: {
+            author: newStory.author, 
+            title: newStory.title,
+            url: newStory.url
         }
     
     }
 
   })
-  console.log(res)
+  console.log('hello')
   let newStory = new Story(
     res.storyId,
     res.title,
