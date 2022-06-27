@@ -16,19 +16,29 @@ $body.on("click", "#nav-all", navAllStories);
 
 
 function submitFormShowClick() {
-  console.log("hello")
   
 
- if($storyForm.hasClass("hidden")){
-   $
-  $storyForm.removeClass('hidden');
+ if($storyForm.css("display") === 'none'|| $storyForm.css("display")=== 'inline'){
+  $storyForm.show();
 
  }else{
 
-  $storyForm.addClass('hidden');
+  $storyForm.hide();
 
  }
-  //{('#storyForm').css("display", 'inline' )}
+
+ // this works but only after double clicking submit, I don't know why...
+// if($storyForm.hasClass("hidden")){
+//   $storyForm.show();
+//   $storyForm.removeClass("hidden")
+
+
+//  }else{
+//   $storyForm.addClass("hidden")
+//  $storyForm.hide();
+
+//  }
+
 }
 
 
@@ -57,5 +67,7 @@ function updateNavOnLogin() {
   $navLogin.hide();
   $navLogOut.show();
   $submit.show()
+  $loginForm.hide() 
+  $signupForm.hide()
   $navUserProfile.text(`${currentUser.username}`).show();
 }

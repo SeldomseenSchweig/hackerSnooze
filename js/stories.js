@@ -11,9 +11,32 @@ async function getAndShowStoriesOnStart() {
 
   putStoriesOnPage();
 }
+$storyForm.on('submit',formSubmitClick )
+
+{/* <form id="storyForm" action="" style="display: none;">
+  <label for="Author">Author:</label>
+  <input type="text" name="" id= >
+  <label for="Title">Title: </label>
+  <input type="text" name="" >
+  <label for="URL">URL: </label>
+  <input type="text" name="">
+  <button type="submit"> Submit Story</button>
+</form> */}
 
 function formSubmitClick(){
-  addStory(currentUser, newStory);
+  
+  console.log($('#author').val())
+  let title = $('#title').val();
+  let author = $('#author').val();
+  let url = $('#url').val();
+  let submittedStory = {
+    author,
+    title,
+    url
+  }
+
+  storyList.addStory(currentUser, submittedStory);
+  getAndShowStoriesOnStart();
   
 }
 
