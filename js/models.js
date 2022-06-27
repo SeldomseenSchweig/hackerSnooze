@@ -24,13 +24,11 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
    getHostName() {
-    // UNIMPLEMENTED: complete this function!
-
-    
-    return "hostname.com";
+    const url = new URL(this.url);  
+    return url;
   }
+  
 }
-
 
 /******************************************************************************
  * List of Story instances: used by UI to show story lists in DOM.

@@ -16,17 +16,11 @@ $body.on("click", "#nav-all", navAllStories);
 
 
 function submitFormShowClick() {
-  
-
  if($storyForm.css("display") === 'none'|| $storyForm.css("display")=== 'inline'){
   $storyForm.show();
-
  }else{
-
   $storyForm.hide();
-
  }
-
  // this works but only after double clicking submit, I don't know why...
 // if($storyForm.hasClass("hidden")){
 //   $storyForm.show();
@@ -38,10 +32,7 @@ function submitFormShowClick() {
 //  $storyForm.hide();
 
 //  }
-
 }
-
-
 $('#submit').on("click", submitFormShowClick);
 
 
