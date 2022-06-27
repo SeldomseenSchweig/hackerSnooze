@@ -12,6 +12,11 @@ async function getAndShowStoriesOnStart() {
   putStoriesOnPage();
 }
 
+function formSubmitClick(){
+  addStory(currentUser, newStory);
+  
+}
+
 /**
  * A render method to render HTML for an individual Story instance
  * - story: an instance of Story

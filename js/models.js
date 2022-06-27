@@ -76,9 +76,11 @@ class StoryList {
    */
 
   async addStory( user, newStory ) {
-  
+    console.log('hello');
     // UNIMPLEMENTED: complete this function!
-    let res = await axios.post(`${BASE_URL}/stories`, {params:
+    let res = await axios.post(`${BASE_URL}/stories`, 
+
+
       {token: user.loginToken,
         story: {
             author: newStory.author, 
@@ -86,19 +88,19 @@ class StoryList {
             url: newStory.url
         }
     
-    }
+    
 
   })
-  console.log('hello')
-  let newStory = new Story(
-    res.storyId,
-    res.title,
-    res.author,
-    res.url,
-    res.username,
-    res.createdAt);
+  console.log(res)
+  let story = new Story(
+    res.data.story.storyId,
+    res.data.story.title,
+    res.data.story.author,
+    res.data.story.url,
+    res.data.story.username,
+    res.data.story.createdAt);
 
-    return newStory;
+    return story;
 
   }
 }
