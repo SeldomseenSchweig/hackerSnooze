@@ -74,7 +74,6 @@ class StoryList {
    */
 
   async addStory( user, newStory ) {
-    console.log('hello');
     // UNIMPLEMENTED: complete this function!
     let res = await axios.post(`${BASE_URL}/stories`, 
 
@@ -119,12 +118,15 @@ class User {
                 name,
                 createdAt,
                 favorites = [],
-                ownStories = []
+                ownStories = [],
+
               },
               token) {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
+
+
 
     // instantiate Story instances for the user's favorites and ownStories
     this.favorites = favorites.map(s => new Story(s));
@@ -133,7 +135,20 @@ class User {
     // store the login token on the user so it's easy to find for API calls.
     this.loginToken = token;
   }
+  //Adds a favorit to the users profile, locally
+   addFavorite(story){
+    currentUser.favorites.push(story);
+  };
 
+  // trying to send it to the API https://hack-or-snooze-v3.herokuapp.com/users/lebronjames2?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6I
+  async rememFavorite(storyId){
+    let res = await axios.post(`${BASE_URL}/users/
+    ${currentUser.username}/favorites/
+    ${storyId}?token=${currentUser.loginToken}`
+    )
+
+  };
+// https://hack-or-snooze-v3.herokuapp.com/users/lebronjames2/favorites/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxlYnJvbmphbWVzMiIsImlhdCI6MTY1NjM2Mzk5NX0.nYSMWnsNQ3Ty23n5pE4MFgo1EuL8F_aX3wgizbEQvTM
   /** Register new user in API, make User instance & return it.
    *
    * - username: a new username
