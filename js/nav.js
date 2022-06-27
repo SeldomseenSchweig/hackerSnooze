@@ -11,18 +11,34 @@ function navAllStories(evt) {
   hidePageComponents();
   putStoriesOnPage();
 }
+$body.on("click", "#nav-all", navAllStories);
+
+
 
 function submitFormShowClick() {
-  Sform.show();
+  console.log("hello")
   
+
+ if($storyForm.hasClass("hidden")){
+   $
+  $storyForm.removeClass('hidden');
+
+ }else{
+
+  $storyForm.addClass('hidden');
+
+ }
+  //{('#storyForm').css("display", 'inline' )}
 }
 
-$body.on("click", "#nav-all", navAllStories);
+
+$('#submit').on("click", submitFormShowClick);
+
 
 /** Show login/signup on click on "login" */
 
 
-$('#submit').on("click", navSubmitClick);
+
 
 function navLoginClick(evt) {
   console.debug("navLoginClick", evt);
