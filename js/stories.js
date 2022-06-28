@@ -41,9 +41,13 @@ async function formSubmitClick(){
 function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
+  //<input class="star" type="checkbox" title="favorite story"><br/><br/>
+//<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>
+    
+
   const hostName = story.getHostName();
   return $(`
-      <li id="${story.storyId}">
+      <li id="${story.storyId}"><input class="star" type="checkbox" title="favorite story" checked>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
