@@ -52,6 +52,7 @@ function generateStoryMarkup(story) {
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
+        <button> Delete </button>
       </li>
     `);
 }
@@ -71,5 +72,16 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+// function removeAndDelete(e){
+//    let storyId = e.target.parentNode.id;
+//    deleteFavoriteStory(storyId);
+//    (`#${storyId}`).remove();
+
+// }
+
+
+
+//document.on('click', '.remove',(e) => removeAndDelete(e));
 
 

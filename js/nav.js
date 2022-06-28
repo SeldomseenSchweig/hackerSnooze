@@ -14,6 +14,7 @@ function navAllStories(evt) {
     $submit.show();
     $favorites.show();
     $myStories.show();
+    //$stars.show();
 
 
 
@@ -22,27 +23,18 @@ function navAllStories(evt) {
 }
 $body.on("click", "#nav-all", navAllStories);
 
-
+// function and click event that shows and hids submit form
 
 function submitFormShowClick() {
+  console.log("hello");
  if($storyForm.css("display") === 'none'|| $storyForm.css("display")=== 'inline'){
   $storyForm.show();
  }else{
   $storyForm.hide();
  }
- // this works but only after double clicking submit, I don't know why...
-// if($storyForm.hasClass("hidden")){
-//   $storyForm.show();
-//   $storyForm.removeClass("hidden")
-
-
-//  }else{
-//   $storyForm.addClass("hidden")
-//  $storyForm.hide();
-
-//  }
 }
-$('#submit').on("click", submitFormShowClick);
+ $('#submit').on("click", submitFormShowClick);
+
 
 
 /** Show login/signup on click on "login" */
@@ -72,6 +64,7 @@ function updateNavOnLogin() {
   $navUserProfile.text(`${currentUser.username}`).show();
   $favorites.show();
   $myStories.show();
+  //$stars.show();
 }
 
 
@@ -96,24 +89,3 @@ function navTofavorites(){
   //event listener for favorites link
 $favorites.on("click", ()=> {
   navTofavorites() })
-
-
-  //move to my stories
-  function navToMyStories() {
-    console.log('hello');
-    let arrayOwn = [];
-   let ownStories = currentUser.ownStories;
-   for (let x = 0; x < ownStories.length; x++) {
-     arrayOwn.push(ownStories[x].storyId);
-    
-   }
-   for (let x = 0; x < storyList.length; x++) {
-     if($.inArray( storyList[x].storyId, arrayOwn) === (-1)){
- 
-       $(`#${storyList[x].storyId}`).hide();
-     };
-   }
-    
-  }
-  $myStories.on("click", ()=> {
-    navToMyStories() })
