@@ -41,10 +41,8 @@ async function formSubmitClick(){
 function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
-  //<input class="star" type="checkbox" title="favorite story"><br/><br/>
-//<input class="star" type="checkbox" title="bookmark page" checked><br/><br/>
-    
-
+ 
+/// Added stars as checkboxes
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}"><input class="star" type="checkbox" title="favorite story" checked>
@@ -73,3 +71,5 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+

@@ -96,6 +96,8 @@ class StoryList {
     res.data.story.url,
     res.data.story.username,
     res.data.story.createdAt);
+    currentUser.ownStories.push(story);
+
 
     return story;
 
@@ -143,19 +145,14 @@ class User {
      )
    };
 
-  // trying to send it to the API https://hack-or-snooze-v3.herokuapp.com/users/lebronjames2?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6I
   async addFavorite(storyId){
     currentUser.favorites.push(storyId);
-    let res = await axios.post(`${BASE_URL}/users/
-    ${currentUser.username}/favorites/
-    ${storyId}?token=${currentUser.loginToken}`
-    )
-    
+    await axios.post(`${BASE_URL}/users/${currentUser.username}/favorites/${storyId}?token=${currentUser.loginToken}`)
   };
 
   async getFavorite(){
-    let res = await axios.get(`https://hack-or-snooze-v3.herokuapp.com/users/${currentUser.username}?token=${currentUser.loginToken}`)
-    console.log(res);
+    //let res = await axios.get(`https://hack-or-snooze-v3.herokuapp.com/users/${currentUser.username}?token=${currentUser.loginToken}`)
+    //console.log(res);
     console.log(currentUser.favorites)
   };
 // https://hack-or-snooze-v3.herokuapp.com/users/lebronjames2/favorites/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxlYnJvbmphbWVzMiIsImlhdCI6MTY1NjM2Mzk5NX0.nYSMWnsNQ3Ty23n5pE4MFgo1EuL8F_aX3wgizbEQvTM

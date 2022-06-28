@@ -114,3 +114,8 @@ function updateUIOnUserLogin() {
 
   updateNavOnLogin();
 }
+
+$(document).on('click','.star',
+(e)=> currentUser.addFavorite(e.target.parentNode.id) );
+
+
