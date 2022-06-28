@@ -135,18 +135,28 @@ class User {
     // store the login token on the user so it's easy to find for API calls.
     this.loginToken = token;
   }
-  //Adds a favorit to the users profile, locally
-   addFavorite(story){
-    currentUser.favorites.push(story);
-  };
+  //Adds and deletes a favorit to the users profile, locally
+    async deleteFavoriteStory(storyId){
+     let res = await axios.delete(`${BASE_URL}/users/
+     ${currentUser.username}/favorites/
+     ${storyId}?token=${currentUser.loginToken}`
+     )
+   };
 
   // trying to send it to the API https://hack-or-snooze-v3.herokuapp.com/users/lebronjames2?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6I
-  async rememFavorite(storyId){
+  async addFavorite(storyId){
+    currentUser.favorites.push(storyId);
     let res = await axios.post(`${BASE_URL}/users/
     ${currentUser.username}/favorites/
     ${storyId}?token=${currentUser.loginToken}`
     )
+    
+  };
 
+  async getFavorite(){
+    let res = await axios.get(`https://hack-or-snooze-v3.herokuapp.com/users/${currentUser.username}?token=${currentUser.loginToken}`)
+    console.log(res);
+    console.log(currentUser.favorites)
   };
 // https://hack-or-snooze-v3.herokuapp.com/users/lebronjames2/favorites/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxlYnJvbmphbWVzMiIsImlhdCI6MTY1NjM2Mzk5NX0.nYSMWnsNQ3Ty23n5pE4MFgo1EuL8F_aX3wgizbEQvTM
   /** Register new user in API, make User instance & return it.
