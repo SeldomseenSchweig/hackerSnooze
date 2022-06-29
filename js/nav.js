@@ -26,7 +26,6 @@ $body.on("click", "#nav-all", navAllStories);
 // function and click event that shows and hids submit form
 
 function submitFormShowClick() {
-  console.log("hello");
  if($storyForm.css("display") === 'none'|| $storyForm.css("display")=== 'inline'){
   $storyForm.show();
  }else{
@@ -70,20 +69,22 @@ function updateNavOnLogin() {
 
 // hides the items not in the favorites array
 function navTofavorites(){
-  console.log('hello');
-   let lis = $('li');
-   let arrayFav = [];
-  let favorites = currentUser.favorites;
-  for (let x = 0; x < favorites.length; x++) {
-    arrayFav.push(favorites[x].storyId);
+  // console.log('hello');
+  //  let lis = $('li');
+  //  let arrayFav = [];
+  // let favorites = currentUser.favorites;
+  // for (let x = 0; x < favorites.length; x++) {
+  //   arrayFav.push(favorites[x]);
    
-  }
-  for (let x = 0; x < lis.length; x++) {
-    if($.inArray( lis[x].id, arrayFav) === (-1)){
+  // }
+  // for (let x = 0; x < lis.length; x++) {
+  //   if($.inArray( lis[x].id, arrayFav) === (-1)){
 
-      $(`#${lis[x].id}`).toggleClass("hidden");
-    };
-  }
+  //     $(`#${lis[x].id}`).toggleClass("hidden");
+  //   };
+  // }
+
+  putFavoriteStoriesOnPage();
   }
 
   //event listener for favorites link

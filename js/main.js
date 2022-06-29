@@ -17,7 +17,7 @@ const $submit = $("#submit");
 const $storyForm = $("#storyForm");
 const $favorites = $("#favorites");
 const $myStories = $("#myStories");
-//const $stars = $("star") ;
+const $stars = $(".star");
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
@@ -29,10 +29,8 @@ function hidePageComponents() {
     $allStoriesList,
     $loginForm,
     $signupForm,
-    $submit,
     $storyForm,
-    $favorites,
-    //$stars
+    
   ];
   components.forEach(c => c.hide());
 }
@@ -41,6 +39,7 @@ function hidePageComponents() {
 
 async function start() {
   console.debug("start");
+ 
 
   // "Remember logged-in user" and log in, if credentials in localStorage
   await checkForRememberedUser();

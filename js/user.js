@@ -25,6 +25,7 @@ async function login(evt) {
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
+  location.reload();
 }
 
 $loginForm.on("submit", login);
@@ -109,13 +110,24 @@ function saveUserCredentialsInLocalStorage() {
 
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
-
   $allStoriesList.show();
-
   updateNavOnLogin();
+ 
 }
+$(document).on('click', '.delete', (e)=> $(`#${e.target.parentElement.id}`).remove())
 
 $(document).on('click','.star',
-(e)=> currentUser.addFavorite(e.target.parentNode.id) );
+(e)=> {
+
+  console.log(e.target)
+      if (!e.target.checked)
+       {      currentUser.addToFavorites(e.target.parentElement.id)    
+      }else { currentUser.removeFromFavorites(e.target.parentElement.id) 
+
+
+}})
+
+$myStories.on('click', ()=> putOwnStoriesOnPage())
+
 
 
