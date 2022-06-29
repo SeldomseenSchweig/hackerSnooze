@@ -39,7 +39,7 @@ async function formSubmitClick(){
  * Returns the markup for the story.
  */
 
-function generateStoryMarkup(story) {
+function generateStoryMarkup(story, showDeleteBtn = false) {
   // console.debug("generateStoryMarkup", story);
 
  
@@ -48,16 +48,23 @@ function generateStoryMarkup(story) {
   const showStar = Boolean(currentUser);
 
   return $(`
-      <li id="${story.storyId}">${showStar ? getStarHTML(story, currentUser) : ""}
+      <li id="${story.storyId}">
+      ${showDeleteBtn ? getDeleteBtnHTML() : ""}
+      ${showStar ? getStarHTML(story, currentUser) : ""}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
-        <button class = "delete"> Delete </button>
       </li>
     `);
+}
+function getDeleteBtnHTML() {
+  return `
+      <span class="trash-can delete">
+        <i class="fas fa-trash-alt"></i>
+      </span>`;
 }
 
 function getStarHTML() {
@@ -82,34 +89,39 @@ function putStoriesOnPage() {
 }
 
 
-async function removeFromStories(storyId){
+// async function removeFromStories(storyId){
 
-  await axios({
-    url: `${BASE_URL}/users/${this.username}/stories/${storyId}`,
-    method: 'DELETE',
-    data: { token : this.loginToken },
-  });
-};
+//   await axios({
+//     url: `${BASE_URL}/users/${this.username}/stories/${storyId}`,
+//     method: 'DELETE',
+//     data: { token : this.loginToken },
+//   });
+// };
+
+
 function putOwnStoriesOnPage() {
   console.debug("putStoriesOnPage");
+  
 
   $allStoriesList.empty();
 
   // loop through all of our stories and generate HTML for them
   for (let story of currentUser.ownStories) {
-    const $story = generateStoryMarkup(story);
+    const $story = generateStoryMarkup(story,true);
     $allStoriesList.append($story);
   }
 
   $allStoriesList.show();
 }
 function putFavoriteStoriesOnPage() {
-  console.debug("putStoriesOnPage");
+  console.debug("putFavoriteStoriesOnPage");
+
 
   $allStoriesList.empty();
 
   // loop through all of our stories and generate HTML for them
   for (let story of currentUser.favorites) {
+    console.log(story)
     const $story = generateStoryMarkup(story);
     $allStoriesList.append($story);
   }

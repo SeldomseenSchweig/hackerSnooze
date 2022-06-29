@@ -149,13 +149,22 @@ class User {
 
 
   async addToFavorites(storyId){
-    currentUser.favorites.push(storyId);
     await axios({
       url: `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
       method: 'POST',
       data: {  token : this.loginToken },
     });
   }
+  async removeFromOwnStories(storyId){
+
+    await axios({
+      url: `${BASE_URL}/users/${this.username}/stories/${storyId}`,
+      method: 'DELETE',
+      data: { token : this.loginToken },
+    });
+ };
+
+  
   
   /** Register new user in API, make User instance & return it.
    *

@@ -114,12 +114,17 @@ function updateUIOnUserLogin() {
   updateNavOnLogin();
  
 }
-$(document).on('click', '.delete', (e)=> $(`#${e.target.parentElement.id}`).remove())
+$(document).on('click', '.trash-can', (e)=>{ 
+  let id = e.target.parentElement.parentElement.id;
+  $(`#${id}`).remove();
+currentUser.removeFromOwnStories(id)
+
+//console.log(e.target.parentElement.parentElement.id)
+});
 
 $(document).on('click','.star',
 (e)=> {
 
-  console.log(e.target)
       if (!e.target.checked)
        {      currentUser.addToFavorites(e.target.parentElement.id)    
       }else { currentUser.removeFromFavorites(e.target.parentElement.id) 
