@@ -158,7 +158,7 @@ class User {
   async removeFromOwnStories(storyId){
 
     await axios({
-      url: `${BASE_URL}/users/${this.username}/stories/${storyId}`,
+      url: `${BASE_URL}/stories/${storyId}`,
       method: 'DELETE',
       data: { token : this.loginToken },
     });
